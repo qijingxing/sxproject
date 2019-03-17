@@ -1,0 +1,17 @@
+<template name="movieTemplate">
+    <view class="movie-container" catchtap="onMovieTap" data-movieId="{{movieId}}">
+        <view class='input-container'>
+           <label>户号：</label>
+            <text>{{id}}</text>
+        </view>
+        <view class='input-container'>
+           <label>姓名：</label>
+           <text>{{nameCn}}</text>
+        </view>
+        <view class='input-container'>
+           <label>身份证号：</label>
+           <text>{{cid}}</text>
+        </view>
+      <button class='update' data-id='{{id}}' bindtap='onUpdate'>修改</button>
+    </view>
+</template>
