@@ -37,9 +37,6 @@ Page({
           });
         } else {
           that.setData({
-            //id: setdata.id,
-            //nameCn: setdata.nameCn,
-            //cid: setdata.cid
             filedata: setdata
           });
         }
@@ -47,14 +44,15 @@ Page({
     })
   },
   comfirm: function (e) {
-    const db = wx.cloud.database()//打开数据库连接
-    let book = e.detail.value
-    if (book.id == "") {//id等于空是新增数据
-      this.add(db, book)  //新增记录
+    //const db = wx.cloud.database()//打开数据库连接
+    let filedatainfo = e.detail.value
+    
+    if (filedatainfo.id == "") {//id等于空是新增数据
+      this.add(filedatainfo)  //新增记录
     } else {
-      this.update(db, book)  //修改记录
+      this.update(filedatainfo)  //修改记录
     }
-  }, add: function (db, book) {
+  }, add: function ( filedatainfo) {
     db.collection("books").add({
       data: {
         name: book.name,
@@ -74,25 +72,36 @@ Page({
       }
     })
 
-  }, update: function (db, book) {
-    db.collection("books").doc(book.id).update({
-      data: {
-        name: book.name,
-        author: book.author,
-        price: parseFloat(book.price)
-      }, success: res => {
+  }, update: function (filedatainfo) {
+    //-------------------------------------------------
+    var that = this;
+    wx.request({
+      url: "http://localhost:8080/updateFileDataSelectById",
+      //data: { fileData: filedatainfo},
+       data:  JSON.stringify(filedatainfo),
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        var result = res.data;
+        var toastText = "操作成功！";
+        if (result <= 0) {
+          toastText = "操作失败" + res.data.errMsg;
+        }
         wx.showToast({
-          title: '修改记录成功',
-        })
-        wx.navigateTo({
-          url: '../index/index',
-        })
-      }, fail: err => {
-        wx.showToast({
-          title: '修改失败',
-        })
+          title: toastText,
+          icon: '',
+          duration: 2000
+        });
+        if (result > 0) {
+          wx.redirectTo({
+            url: '../data/data',
+          })
+        }
       }
     })
+    //------------------------------------------------------
   }
 
 })
