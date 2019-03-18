@@ -11,7 +11,7 @@
     </view>
     <view class="search">
       <icon type="search" class="search-img" size="13" color="#405f80"></icon>
-      <input type="text" placeholder="请输入户号" placeholder-class="placeholder" bindfocus="onBindFocus" bindblur="onBindBlur" />
+      <input type="text" placeholder="请输入身份证号" placeholder-class="placeholder" bindfocus="onBindFocus" bindblur="onBindBlur" />
       <image wx:if="{{searchPanelShow}}" src="/images/icon/xx.png" class="xx-img" bindtap="onCancelImgTap"></image>
     </view>
   </view>

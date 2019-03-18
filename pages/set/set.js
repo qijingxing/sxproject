@@ -23,7 +23,7 @@ Page({
       return;
     }
     wx.request({
-      url: "http://localhost:8080/filedataSelectById",
+      url: "http://192.168.153.1:8080/filedataSelectById",
       data: { "id": options.id },
       method: 'GET',
       success: function (res) {
@@ -76,7 +76,7 @@ Page({
     //-------------------------------------------------
     var that = this;
     wx.request({
-      url: "http://localhost:8080/updateFileDataSelectById",
+      url: "http://192.168.153.1:8080/updateFileDataSelectById",
       //data: { fileData: filedatainfo},
        data:  JSON.stringify(filedatainfo),
       method: 'POST',

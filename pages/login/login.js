@@ -53,7 +53,7 @@ Page({
     });
 
     //var urlStr = app.globalData.BaseURL + '/api/adminUser/login';
-    var urlStr ='http://localhost:8080/loginVerify';
+    var urlStr ='http://192.168.153.1:8080/loginVerify';
     wx.request({
       method: "GET",
       url: urlStr, //仅为示例，并非真实的接口地址
