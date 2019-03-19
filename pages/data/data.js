@@ -75,10 +75,25 @@ Page({
       },
     ],
     hx_index: 0,
-    id : ""
+    id: "",
+    groupId: ""
   },
   bindPickerChange_hx: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value);
+    var that = this;
+    var inputid = that.data.id;
+    var groupId = this.data.pic_array[e.detail.value].id;
+    console.log('groupId为', groupId);
+    console.log('inputcid为', that.data.id);
+    that.setData({
+      groupId: groupId
+    })
+    this.getfiledata(inputid, groupId);
+
+
+
+
+
     this.setData({ //给变量赋值
       hx_index: e.detail.value, //每次选择了下拉列表的内容同时修改下标然后修改显示的内容，显示的内容和选择的内容一致
     })
@@ -89,10 +104,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var that = this;
+    var id = 1
+    wx.request({
+      method: "GET",
+      url: 'http://192.168.153.1:8080/getGroupList', //仅为示例，并非真实的接口地址
+      data: {
+        parentId: id
+      },
+      success: function(res) {
+        var groupList = res.data.datalist;
+        that.setData({
+          pic_array: groupList
+        })
+      }
+
+    })
 
   },
   onShow: function() {
-   this.getfiledata("");
+    this.getfiledata("", "");
   },
   goSet: function() {
     wx.navigateTo({
@@ -125,18 +156,26 @@ Page({
     })
   },
   onBindBlur: function(event) {
+    var that = this;
     var id = event.detail.value;
-    this.getfiledata(id);
-  },getfiledata:function(id){
+    that.setData({
+      id: id
+    })
+    var groupId = that.data.groupId;
+    console.log("groupId------------------------------", groupId);
+    this.getfiledata(id, groupId);
+  },
+  getfiledata: function(id, groupId) {
 
     var that = this;
     wx.request({
       method: "GET",
       url: 'http://192.168.153.1:8080/filedataSelectAll', //仅为示例，并非真实的接口地址
       data: {
-        id:id
+        id: id,
+        groupId: groupId
       },
-      success: function (res) {
+      success: function(res) {
         var list = res.data.datalist;
         if (list == null) {
           wx.showToast({
