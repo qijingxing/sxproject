@@ -8,3 +8,16 @@
   padding: 120rpx 0;
   box-sizing: border-box;
 } 
+text {
+font-family:MicroSoft Yahei;
+font-size:40rpx;
+color:#666;
+
+}
+label{
+  font-family:MicroSoft Yahei;
+font-size:40rpx;
+color:#666;
+}
+
+

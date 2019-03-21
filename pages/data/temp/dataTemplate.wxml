@@ -12,6 +12,6 @@
            <label>身份证号：</label>
            <text>{{cid}}</text>
         </view>
-      <button class='update' data-id='{{id}}' bindtap='onUpdate'>修改</button>
+      <image class="updateimage" src='/images/tab/update.png' data-id='{{id}}' bindtap='onUpdate'></image>
     </view>
 </template>

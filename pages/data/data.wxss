@@ -52,16 +52,18 @@
   line-height: 60rpx;
   font-size: 30rpx;
   color: #ffffff;
+  
 }
 .del{
   background-color: red;
   border: 1rpx solid red;
 }
-.update{
+
+/*.update{
   margin-left: 10rpx;
   background-color: #1aad16;
 }
-/* .button-hover {
+ .button-hover {
   color:transparent;
   background-color:transparent;
 
@@ -97,6 +99,35 @@
   background: rgba(0,0,0,.3);
   right: 30rpx;
   border-radius: 50%;
+}
+.updateimage {
+  width: 50px;
+  height: 51px;
+  margin-left: 254px;
+ 
+
+}
+
+.movie-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 22rpx;
+   border-bottom:1px solid #ededed;
+  border-top:1px solid #ededed;
+  margin-top:20rpx;
+margin-bottom:40rpx;
+
+}
+
+.movie-img {
+  width: 200rpx;
+  height: 270rpx;
+  padding-bottom: 20rpx;
+}
+
+.movie-title {
+  margin-bottom: 16rpx;
+  font-size: 24rpx;
 }
 
 
