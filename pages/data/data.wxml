@@ -25,6 +25,7 @@
     <template is="movieTemplate" data="{{...item}}" />
   </view>
 </block>
+<image src='/images/tab/top.png' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
 <!--<view class='add'>
   <button bindtap='goSet'>添加调查列表</button>
 </view>-->

@@ -22,10 +22,9 @@
     width: 750rpx;
     height: 120rpx;
     bottom: 0;
+   
 }
 .comfirm button{
-  margin: 0 10rpx;
-  border-radius: 14rpx 15rpx;
-  background-color: #1aad16;
-  color: #ffffff;
+ background-image: url(/images/tab/update.png);
+
 }
