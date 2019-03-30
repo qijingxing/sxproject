@@ -75,26 +75,23 @@ Page({
       },
     ],
     hx_index: 0,
-    id: "",
-    groupId: "",
-    topNum: 0
+    id: '',
+    groupId: 0,
+    topNum: 0,
+    query: '',
+    smallId: 0
   },
   bindPickerChange_hx: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value);
     var that = this;
     var inputid = that.data.id;
-    var groupId = this.data.pic_array[e.detail.value].id;
+    var groupId = this.data.pic_array[e.detail.value].smallId ;
     console.log('groupId为', groupId);
     console.log('inputcid为', that.data.id);
     that.setData({
       groupId: groupId
     })
     this.getfiledata(inputid, groupId);
-
-
-
-
-
     this.setData({ //给变量赋值
       hx_index: e.detail.value, //每次选择了下拉列表的内容同时修改下标然后修改显示的内容，显示的内容和选择的内容一致
     })
@@ -109,12 +106,17 @@ Page({
     var id = 1
     wx.request({
       method: "GET",
-      url: 'http://192.168.153.1:8080/getGroupList', //仅为示例，并非真实的接口地址
+      url: 'https://www.gdfwxt.com/api/gdfwxt/small_class/list', //仅为示例，并非真实的接口地址
       data: {
-        parentId: id
+        user_id: wx.getStorageSync('user_id'),
+        access_token: wx.getStorageSync('access_token')
+      },
+      header: {
+        "Content-Type": "no-cache",
+        "ClientId": "wechat_small_code"
       },
       success: function(res) {
-        var groupList = res.data.datalist;
+        var groupList = res.data.result;
         that.setData({
           pic_array: groupList
         })
@@ -124,7 +126,7 @@ Page({
 
   },
   onShow: function() {
-    this.getfiledata("", "");
+    this.getfiledata("", 0);
   },
   goSet: function() {
     wx.navigateTo({
@@ -151,9 +153,9 @@ Page({
     console.log(id)
   },
   onUpdate: function(e) {
-    let id = e.currentTarget.dataset.id
+    let cid = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '../set/set?id=' + id,
+      url: '../set/set?cid=' + cid,
     })
   },
   onBindBlur: function(event) {
@@ -162,22 +164,29 @@ Page({
     that.setData({
       id: id
     })
-    var groupId = that.data.groupId;
+    var groupId = that.data.groupId == undefined ? 0 : that.data.groupId;
     console.log("groupId------------------------------", groupId);
     this.getfiledata(id, groupId);
   },
   getfiledata: function(id, groupId) {
-
+    id == undefined ? '' : id;
+    groupId == undefined ? '' : groupId;
     var that = this;
     wx.request({
       method: "GET",
-      url: 'http://192.168.153.1:8080/filedataSelectAll', //仅为示例，并非真实的接口地址
+      url: 'https://www.gdfwxt.com/api/gdfwxt/small_class/get', //仅为示例，并非真实的接口地址
       data: {
-        id: id,
-        groupId: groupId
+        query: id,
+        smallId: groupId,
+        user_id: wx.getStorageSync('user_id'),
+        access_token: wx.getStorageSync('access_token')
+      },
+      header: {
+        "Content-Type": "no-cache",
+        "ClientId": "wechat_small_code"
       },
       success: function(res) {
-        var list = res.data.datalist;
+        var list = res.data.result.userList;
         if (list == null) {
           wx.showToast({
             title: 'meiyoushiju',
@@ -194,7 +203,7 @@ Page({
 
   },
   // 获取滚动条当前位置
-  onPageScroll: function (e) {
+  onPageScroll: function(e) {
     console.log(e)
     if (e.scrollTop > 100) {
       this.setData({
@@ -208,7 +217,7 @@ Page({
   },
 
   //回到顶部
-  goTop: function (e) {  // 一键回到顶部
+  goTop: function(e) { // 一键回到顶部
     if (wx.pageScrollTo) {
       wx.pageScrollTo({
         scrollTop: 0

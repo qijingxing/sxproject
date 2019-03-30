@@ -1,8 +1,9 @@
 {
   "pages":[
     "pages/login/login",
+   "pages/data/data",
     "pages/index/index",
-    "pages/data/data",
+    "pages/set/set",
     "pages/logs/logs"
     
   ],

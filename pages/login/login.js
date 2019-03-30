@@ -53,35 +53,37 @@ Page({
     });
 
     //var urlStr = app.globalData.BaseURL + '/api/adminUser/login';
-    var urlStr ='http://192.168.153.1:8080/loginVerify';
+    //var urlStr ='http://192.168.153.1:8080/loginVerify';
+    var urlStr = 'http://www.chenjz.cn/api/gdfwxt/auth/login';
     wx.request({
-      method: "GET",
+      method: "POST",
       url: urlStr, //仅为示例，并非真实的接口地址
       data: {
         username: userName,
         password: passwords
       },
       header: {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
+        "ClientId":"wechat_small_code"
       },
       success: function (res) {
         wx.hideToast();
         console.log(res.data);
-        var code = res.data.code;
-        if (code === 200) {
+        var code = res.data.error_code;
+        
+        if (code === 0) {
 
           // 后台传递过来的值
-         // var adminUserViewId = res.data.data.adminUserViewId;
-          //var token = res.data.data.token;
+          var user_id = res.data.result.user_id;
+          var access_token = res.data.result.access_token;
           // 设置全局变量的值
-          //app.globalData.adminUserViewId = res.data.data.adminUserViewId;
-          //app.globalData.token = res.data.data.token;
+         // app.globalData.user_id = res.data.data.user_id;
+          //app.globalData.token = res.data.data.access_token;
            //将token存储到本地
-         // wx.setStorageSync('adminUserViewId', adminUserViewId);
-          
-          //wx.setStorageSync('token', token);
-          //console.log("登录成功的adminUserViewId：" + adminUserViewId);
-          //console.log("登录成功的token：" + token);
+          wx.setStorageSync('user_id', user_id);
+          wx.setStorageSync('access_token', access_token);
+          console.log("登录成功的adminUserViewId：" + user_id);
+          console.log("登录成功的token：" + access_token);
           // 切换到首页
           wx.redirectTo({
             url: '../data/data',
@@ -89,9 +91,9 @@ Page({
         } else {
           wx.showToast({
             duration: 1000,
-            title: res.data.msg,
+            title: res.data.message,
             icon: 'loading',
-            success: () => console.log('登录失败，请稍后重试。' + res.data.msg)
+            success: () => console.log('登录失败，请稍后重试。' + res.data.message)
           })
         }
       },

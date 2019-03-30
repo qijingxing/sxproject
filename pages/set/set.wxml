@@ -1,21 +1,79 @@
 <!--pages/set/set.wxml-->
 <view class='container'>
-      <form bindsubmit='comfirm' >
-        <view class='input-container'>
-           <label>户号：</label>
-            <input style='display:none'  name="id" value='{{filedata.id}}'></input>
-           <input data-value='{{filedata.id}}'  name="id" value='{{filedata.id}}'></input>
+  <form bindsubmit='comfirm'>
+    <view class='input-container'>
+      <label>户号：</label>
+      <input style='display:none' name="id" value='{{filedata.id}}'></input>
+      <input data-value='{{filedata.id}}' name="id" value='{{filedata.id}}'></input>
+    </view>
+    <view class='input-container'>
+      <label>姓名：</label>
+      <input name="nameCn" value='{{filedata.nameCn}}'></input>
+    </view>
+    <view class='input-container'>
+      <label>身份证号：</label>
+      <input name="cid" value='{{filedata.cid}}'></input>
+    </view>
+    <view class='input-container'>
+      <label>电话：</label>
+      <input name="teleNo" value='{{filedata.teleNo}}'></input>
+    </view>
+
+    <view class="input-container">
+      <picker name="picker_hx" class="cybm_pic_1" value="{{pic_array[isjoinhx_index].id}}" data-selecthx="{{pic_array[isjoinhx_index].id}}" range="{{pic_array}}" range-key="{{'name'}}" bindchange="bindPickerChange_isJoin">
+        <view class="input-container">
+          <label>是否入户：</label>
+          <input name="isJoin" value='{{pic_array[isjoinhx_index].name}}'></input>
         </view>
-        <view class='input-container'>
-           <label>姓名：</label>
-           <input   name="nameCn" value='{{filedata.nameCn}}'></input>
+      </picker>
+    </view>
+
+    <view class='input-container'>
+      <label>是否入户原因：</label>
+      <input name="isJoinCause" value='{{filedata.isJoinCause}}'></input>
+    </view>
+    <view class='input-container'>
+      <label>4个电话知晓情况：</label>
+      <input name="fourTeleKnow" value='{{filedata.fourTeleKnow}}'></input>
+    </view>
+    <view class="input-container">
+      <picker name="teleConn" class="cybm_pic_1" value="{{pic_array[teleConnhx_index].id}}" data-selecthx="{{pic_array[teleConnhx_index].id}}" range="{{pic_array}}" range-key="{{'name'}}" bindchange="bindPickerChange_teleConn">
+        <view class="input-container">
+          <label>是否电话沟通：</label>
+          <input name="teleConn" value='{{pic_array[teleConnhx_index].name}}'></input>
         </view>
-        <view class='input-container'>
-           <label>身份证号：</label>
-           <input   name ="cid" value='{{filedata.cid}}'></input>
+      </picker>
+    </view>
+    <view class="input-container">
+      <picker name="teleTrue" class="cybm_pic_1" value="{{pic_array[teleTruehx_index].id}}" data-selecthx="{{pic_array[teleTruehx_index].id}}" range="{{pic_array}}" range-key="{{'name'}}" bindchange="bindPickerChange_teleTrue">
+        <view class="input-container">
+          <label>电话是否正确：</label>
+          <input name="teleTrue" value='{{pic_array[teleTruehx_index].name}}'></input>
         </view>
-        <view class='comfirm'>
-           <button   form-type='submit' style='background-image:url(/images/tab/update.png);'>保存</button>
-      </view>
-    </form>
+      </picker>
+    </view>
+    <view class="input-container">
+      <picker name="joinWechat" class="cybm_pic_1" value="{{pic_array[joinWechathx_index].id}}" data-selecthx="{{pic_array[joinWechathx_index].id}}" range="{{pic_array}}" range-key="{{'name'}}" bindchange="bindPickerChange_joinWechat">
+        <view class="input-container">
+          <label>是否加入微信群：</label>
+          <input name="joinWechat" value='{{pic_array[joinWechathx_index].name}}'></input>
+        </view>
+      </picker>
+    </view>
+    <view class="input-container">
+      <picker name="payment" class="cybm_pic_1" value="{{paymentth_index}}"  range="{{pay_array}}" bindchange="bindPickerChange_payment">
+        <view class="input-container">
+          <label>缴费方式：</label>
+          <input name="payment" value='{{pay_array[paymentth_index]}}'></input>
+        </view>
+      </picker>
+    </view>
+    <view class='input-container'>
+      <label>备注：</label>
+      <input name="comment" value='{{filedata.comment}}'></input>
+    </view>
+    <view class='comfirm'>
+      <button form-type='submit' style='background-image:url(/images/tab/update.png);'>保存</button>
+    </view>
+  </form>
 </view>

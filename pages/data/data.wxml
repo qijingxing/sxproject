@@ -3,9 +3,9 @@
 <view wx:if="{{postList}}" class='container'>
   <view>
     <view class="select">
-      <picker name="picker_hx" class="cybm_pic_1" value="{{pic_array[hx_index].id}}" data-selecthx="{{pic_array[hx_index].id}}" range="{{pic_array}}" range-key="{{'name'}}" bindchange="bindPickerChange_hx">
+      <picker name="picker_hx" class="cybm_pic_1" value="{{pic_array[hx_index].smallId}}" data-selecthx="{{pic_array[hx_index].smallId}}" range="{{pic_array}}" range-key="{{'smallName'}}" bindchange="bindPickerChange_hx">
         <view class="picker">
-          地区:{{pic_array[hx_index].name}}
+          地区:{{pic_array[hx_index].smallName}}
         </view>
       </picker>
     </view>
