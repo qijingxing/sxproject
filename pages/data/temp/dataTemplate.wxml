@@ -12,6 +12,9 @@
            <label>身份证号：</label>
            <text>{{cid}}</text>
         </view>
+        <view class='input-container'>
+           <text>{{completeStatus==0?'未完成':'已完成'}}</text>
+        </view>
       <image class="updateimage" src='/images/tab/update.png' data-id='{{cid}}' bindtap='onUpdate'></image>
     </view>
 </template>
