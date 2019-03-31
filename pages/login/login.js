@@ -68,7 +68,6 @@ Page({
       },
       success: function (res) {
         wx.hideToast();
-        console.log(res.data);
         var code = res.data.error_code;
         
         if (code === 0) {
@@ -82,8 +81,6 @@ Page({
            //将token存储到本地
           wx.setStorageSync('user_id', user_id);
           wx.setStorageSync('access_token', access_token);
-          console.log("登录成功的adminUserViewId：" + user_id);
-          console.log("登录成功的token：" + access_token);
           // 切换到首页
           wx.redirectTo({
             url: '../data/data',
@@ -99,7 +96,6 @@ Page({
       },
       fail: function () {
         wx.hideToast();
-        console.log("登录失败");
         wx.showToast({
           duration: 1000,
           icon: 'loading',

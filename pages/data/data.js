@@ -82,12 +82,9 @@ Page({
     smallId: 0
   },
   bindPickerChange_hx: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
     var that = this;
     var inputid = that.data.id;
     var groupId = this.data.pic_array[e.detail.value].smallId ;
-    console.log('groupId为', groupId);
-    console.log('inputcid为', that.data.id);
     that.setData({
       groupId: groupId
     })
@@ -95,7 +92,6 @@ Page({
     this.setData({ //给变量赋值
       hx_index: e.detail.value, //每次选择了下拉列表的内容同时修改下标然后修改显示的内容，显示的内容和选择的内容一致
     })
-    console.log('自定义值:', this.data.hx_select);
   },
 
   /**
@@ -151,7 +147,6 @@ Page({
         })
       }
     })
-    console.log(id)
   },
   onUpdate: function(e) {
     let cid = e.currentTarget.dataset.id
@@ -166,7 +161,6 @@ Page({
       id: id
     })
     var groupId = that.data.groupId == undefined ? 0 : that.data.groupId;
-    console.log("groupId------------------------------", groupId);
     this.getfiledata(id, groupId);
   },
   getfiledata: function(id, groupId) {
@@ -190,7 +184,7 @@ Page({
         var list = res.data.result.userList;
         if (list == null) {
           wx.showToast({
-            title: 'meiyoushiju',
+            title: '暂无数据',
             duration: 2000
           })
         } else {
@@ -205,7 +199,6 @@ Page({
   },
   // 获取滚动条当前位置
   onPageScroll: function(e) {
-    console.log(e)
     if (e.scrollTop > 100) {
       this.setData({
         floorstatus: true

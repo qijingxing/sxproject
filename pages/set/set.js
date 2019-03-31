@@ -165,19 +165,15 @@ Page({
     //------------------------------------------------------
   },
   bindPickerChange_hx: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
     var that = this;
     var inputid = that.data.id;
     var groupId = this.data.pic_array[e.detail.value].id;
-    console.log('groupId为', groupId);
-    console.log('inputcid为', that.data.id);
     that.setData({
       groupId: groupId
     })
     this.setData({ //给变量赋值
       hx_index: e.detail.value, //每次选择了下拉列表的内容同时修改下标然后修改显示的内容，显示的内容和选择的内容一致
     })
-    console.log('自定义值:', this.data.hx_select);
   },
   bindPickerChange_isJoin: function(e) {
     var that = this;
