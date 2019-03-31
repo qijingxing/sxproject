@@ -4,76 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    postList: [{
-        id: 1,
-        nameCn: '1区',
-        teleNo: '123',
-        cid: '123'
-      },
-      {
-        id: 2,
-        nameCn: '2区',
-        teleNo: '123',
-        cid: '123'
-      },
-      {
-        id: 3,
-        nameCn: '3区',
-        teleNo: '123',
-        cid: '123'
-      },
-      {
-        id: 4,
-        nameCn: '4区',
-        teleNo: '123',
-        cid: '123'
-      },
-      {
-        id: 5,
-        nameCn: '6区',
-        teleNo: '123',
-        cid: '123'
-      },
-      {
-        id: 6,
-        nameCn: '5区',
-        teleNo: '123',
-        cid: '123'
-      },
-    ],
-    pic_array: [{
-        id: 13,
-        name: '一区'
-      },
-      {
-        id: 14,
-        name: '二区'
-      },
-      {
-        id: 15,
-        name: '三区'
-      },
-      {
-        id: 16,
-        name: '四区'
-      },
-      {
-        id: 17,
-        name: '五区'
-      },
-      {
-        id: 18,
-        name: '六区'
-      },
-      {
-        id: 19,
-        name: '七区'
-      },
-      {
-        id: 20,
-        name: '八区'
-      },
-    ],
+    postList: [],
+    pic_array: [],
     hx_index: 0,
     id: '',
     groupId: 0,
@@ -113,12 +45,34 @@ Page({
         "ClientId": "wechat_small_code"
       },
       success: function(res) {
-        var groupList = res.data.result;
-        that.setData({
-          pic_array: groupList
-        })
+        if (res.data.error_code == 0){
+            var groupList = res.data.result;
+            that.setData({
+            pic_array: groupList
+            })
+        }
+        else if (res.data.error_code == 2007) {
+            wx.showModal({
+                title: '提示',
+                content: '登录超时，请重新登录'
+            })
+            wx.redirectTo({
+                url: '../login/login',
+            })
+        }
+        else{
+            wx.showModal({
+                title: '提示',
+                content: res.data.message
+            })
+        }
+      },
+      fail:function(res){
+          wx.showModal({
+              title: '提示',
+              content: '网络请求错误'
+          })
       }
-
     })
 
   },
@@ -182,18 +136,21 @@ Page({
       },
       success: function(res) {
         var list = res.data.result.userList;
-        if (list == null) {
-          wx.showToast({
-            title: '暂无数据',
-            duration: 2000
-          })
+
+        if (list.length !=0 ) {
+            that.setData({
+                postList: list
+            })
         } else {
-          that.setData({
-            postList: list
-          })
+            that.setData({
+                postList: list
+            })
+            wx.showToast({
+                title: '暂无数据',
+                duration: 2000
+            })
         }
       }
-
     })
 
   },

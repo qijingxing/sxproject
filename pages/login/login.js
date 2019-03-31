@@ -54,7 +54,7 @@ Page({
 
     //var urlStr = app.globalData.BaseURL + '/api/adminUser/login';
     //var urlStr ='http://192.168.153.1:8080/loginVerify';
-    var urlStr = 'http://www.chenjz.cn/api/gdfwxt/auth/login';
+    var urlStr = 'https://www.gdfwxt.com/api/gdfwxt/auth/login';
     wx.request({
       method: "POST",
       url: urlStr, //仅为示例，并非真实的接口地址

@@ -18,7 +18,7 @@
   padding: 10rpx;
 }
 .comfirm {
-    position: fixed;
+    /* position: fixed; */
     width: 750rpx;
     height: 120rpx;
     bottom: 0;

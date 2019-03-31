@@ -2,17 +2,17 @@
 <view class='container'>
   <form bindsubmit='comfirm'>
     <view class='input-container'>
-      <label>户号：</label>
-      <input style='display:none' name="id" value='{{filedata.id}}'></input>
-      <input data-value='{{filedata.id}}' name="id" value='{{filedata.id}}'></input>
+      <label>户号：{{filedata.accid}}</label>
+      <input hidden="true" data-value='{{filedata.id}}' name="id" value='{{filedata.id}}'></input>
+      <input hidden="true" data-value='{{filedata.accid}}' name="accid" value='{{filedata.accid}}'></input>
     </view>
     <view class='input-container'>
-      <label>姓名：</label>
-      <input name="nameCn" value='{{filedata.nameCn}}'></input>
+      <label>姓名：{{filedata.nameCn}}</label>
+      <input hidden="true" name="nameCn" value='{{filedata.nameCn}}'></input>
     </view>
     <view class='input-container'>
-      <label>身份证号：</label>
-      <input name="cid" value='{{filedata.cid}}'></input>
+      <label>身份证号：{{filedata.cid}}</label>
+      <input hidden="true" name="cid" value='{{filedata.cid}}'></input>
     </view>
     <view class='input-container'>
       <label>电话：</label>

@@ -48,6 +48,15 @@ Page({
       },
       method: 'GET',
       success: function(res) {
+          if (res.data.error_code == 2007) {
+              wx.showModal({
+                  title: '提示',
+                  content: '登录超时，请重新登录'
+              })
+              wx.redirectTo({
+                  url: '../login/login',
+              })
+          }
         var setdata = res.data.result.userList[0];
         that.accid = setdata.accid;
         if (setdata == undefined) {
@@ -130,7 +139,7 @@ Page({
         isJoin: filedatainfo.isJoin,
         isJoinCause: filedatainfo.isJoinCause,
         joinWechat: filedatainfo.joinWechat,
-        nameCn: filedatainfo.nameCn,
+        // nameCn: filedatainfo.nameCn,
         payment: filedatainfo.payment,
         teleConn: filedatainfo.teleConn,
         teleNo: filedatainfo.teleNo,
@@ -147,18 +156,30 @@ Page({
       success: function(res) {
         var result = res.data.error_code;
         var toastText = "操作成功！";
-        if (result != 0) {
-          toastText = "操作失败" + res.data.errMsg;
+        if (result == 2007) {
+            wx.showModal({
+                title: '提示',
+                content: '登录超时，请重新登录'
+            })
+            wx.redirectTo({
+                url: '../login/login',
+            })
         }
-        wx.showToast({
-          title: toastText,
-          icon: '',
-          duration: 2000
-        });
-        if (result == 0) {
+        else if (result == 0) {
+            wx.showToast({
+                title: toastText,
+                icon: '',
+                duration: 2000
+            });
           wx.navigateBack({
             url: '../data/data',
           })
+        }
+        else {
+            wx.showModal({
+                title: '提示',
+                content: res.data.message
+            })
         }
       }
     })

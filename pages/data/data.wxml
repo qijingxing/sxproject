@@ -11,16 +11,15 @@
     </view>
     <view class="search">
       <icon type="search" class="search-img" size="13" color="#405f80"></icon>
-      <input type="text" placeholder="请输入身份证号" placeholder-class="placeholder" bindfocus="onBindFocus" bindblur="onBindBlur" />
+      <input type="text" placeholder="请输入户号或者身份证号" placeholder-class="placeholder" bindfocus="onBindFocus" bindblur="onBindBlur" />
       <image wx:if="{{searchPanelShow}}" src="/images/icon/xx.png" class="xx-img" bindtap="onCancelImgTap"></image>
     </view>
   </view>
 </view>
-
-<view wx:else="{{postList}}" class='none'>
-  <text>暂时没有信息！</text>
+<view wx:else>
+暂时没有信息！
 </view>
-<block wx:for="{{postList}}" wx:for-item="item" wx:for-index="idx">
+<block wx:for="{{postList}}" wx:for-item="item" wx:key="idx">
   <view class="single-view-container">
     <template is="movieTemplate" data="{{...item}}" />
   </view>
