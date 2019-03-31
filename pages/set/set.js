@@ -156,7 +156,7 @@ Page({
           duration: 2000
         });
         if (result == 0) {
-          wx.redirectTo({
+          wx.navigateBack({
             url: '../data/data',
           })
         }
