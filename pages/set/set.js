@@ -93,29 +93,29 @@ Page({
       this.update(filedatainfo) //修改记录
     }
   },
-  add: function(filedatainfo) {
-    db.collection("books").add({
-      data: {
-        name: book.name,
-        author: book.author,
-        price: parseFloat(book.price)
-      },
-      success: res => {
-        wx.showToast({
-          title: '新增记录成功',
-        })
-        wx.navigateTo({
-          url: '../index/index',
-        })
-      },
-      fail: err => {
-        wx.showToast({
-          title: '新增失败',
-        })
-      }
-    })
+  // add: function(filedatainfo) {
+  //   db.collection("books").add({
+  //     data: {
+  //       name: book.name,
+  //       author: book.author,
+  //       price: parseFloat(book.price)
+  //     },
+  //     success: res => {
+  //       wx.showToast({
+  //         title: '新增记录成功',
+  //       })
+  //       wx.navigateTo({
+  //         url: '../index/index',
+  //       })
+  //     },
+  //     fail: err => {
+  //       wx.showToast({
+  //         title: '新增失败',
+  //       })
+  //     }
+  //   })
 
-  },
+  // },
   update: function(filedatainfo) {
     //-------------------------------------------------
     var that = this;

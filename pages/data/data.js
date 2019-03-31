@@ -131,23 +131,23 @@ Page({
     })
 
   },
-  onDel: function(e) {
-    let id = e.currentTarget.dataset.id
-    const db = wx.cloud.database();
-    db.collection("books").doc(id).remove({
-      success: res => {
-        wx.showToast({
-          title: '删除成功',
-        })
-        this.onLoad() //删除成功重新加载
-      },
-      fail: err => {
-        wx.showToast({
-          title: '删除失败',
-        })
-      }
-    })
-  },
+  // onDel: function(e) {
+  //   let id = e.currentTarget.dataset.id
+  //   const db = wx.cloud.database();
+  //   db.collection("books").doc(id).remove({
+  //     success: res => {
+  //       wx.showToast({
+  //         title: '删除成功',
+  //       })
+  //       this.onLoad() //删除成功重新加载
+  //     },
+  //     fail: err => {
+  //       wx.showToast({
+  //         title: '删除失败',
+  //       })
+  //     }
+  //   })
+  // },
   onUpdate: function(e) {
     let cid = e.currentTarget.dataset.id
     wx.navigateTo({
