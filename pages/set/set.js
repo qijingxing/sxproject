@@ -97,7 +97,7 @@ Page({
     let filedatainfo = e.detail.value
 
     if (filedatainfo.id == "") { //id等于空是新增数据
-      this.add(filedatainfo) //新增记录
+    //   this.add(filedatainfo) //新增记录
     } else {
       this.update(filedatainfo) //修改记录
     }
